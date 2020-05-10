@@ -1,0 +1,129 @@
+$orange: #f18f01ff;
+$lightBlue: #048ba8ff;
+$darkBlue: #2e4057ff;
+$green: #99c24dff;
+$grey: #2f2d2eff;
+
+$note-yellow: #fdf38d;
+$note-green: #afffa7;
+$note-red: #ff9696;
+$note-pink: #eab4ff;
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+*::selection {
+    background: #f06d0650;
+}
+
+body {
+    font-family: Jost, 'sans-serif';
+    background: $grey;
+    color: #f8f8f8;
+    margin: 10px;
+}
+
+#new-note {
+    position: fixed;
+    right: 10px;
+    top: 10px;
+    z-index: 10;
+    background: $lightBlue;
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    display: grid;
+    place-items: center;
+    color: white;
+    cursor: pointer;
+    &:hover {
+        color: $darkBlue;
+    }
+
+    @media screen and (max-width: 480px) {
+        bottom: 10px;
+        top: initial;
+        position: fixed;
+    }
+
+}
+
+#notes {
+    display: block;
+    column-count: 4;
+    column-gap: 20px;
+    column-fill: auto;
+    column-width: 300px;
+    height: calc(100vh - 40px);
+
+    @media screen and (max-width: 480px) {
+        column-count: 1;
+        height: initial;
+    }
+
+}
+
+.note {
+    display: flex;
+    background: $note-yellow;
+    color: $grey;
+    margin-bottom: 20px;
+    break-inside: avoid;
+    .note-header {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+
+        i {
+            font-size: 1rem;
+            cursor: pointer;
+            color: $grey;
+        }
+
+        h2 {
+            font-size: 1rem;
+            font-weight: 300;
+        }
+
+        .note-actions {
+            display: flex;
+            align-items: center;
+        }
+    }
+
+    .note-color-select {
+        display: flex;
+        align-items: center;
+        position: relative;
+        align-self: flex-start;
+        ul {
+            list-style-type: none;
+            background: white;
+            padding: 5px;
+            li {
+                height: 20px;
+                width: 20px;
+                cursor: pointer;
+            }
+        }
+    }
+}
+
+.--yellow {
+    background: $note-yellow;
+}
+
+.--green {
+    background: $note-green;
+}
+
+.--pink {
+    background: $note-pink
+}
+
+.--red {
+    background: $note-red;
+}

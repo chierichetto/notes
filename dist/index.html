@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>notes</title>
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <script src="bundle.js" type="text/javascript"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Jost:wght@300;500;700&display=swap" rel="stylesheet">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+</head>
+<body>
+
+<div id="new-note">
+    <i class="material-icons">add</i>
+</div>
+
+<section id="notes"></section>
+
+
+<script type="text/template" data-id="tpl-note">
+    <div class="note {{color}}" data-id="{{id}}">
+        <div class="note-color-select">
+            <ul>
+                <li data-color="--yellow" class="--yellow"></li>
+                <li data-color="--green" class="--green"></li>
+                <li data-color="--pink" class="--pink"></li>
+                <li data-color="--red" class="--red"></li>
+            </ul>
+        </div>
+        <div style="flex: 1; padding: 10px;">
+            <div class="note-header">
+                <h2 class="note-title" contenteditable="true">{{title}}</h2>
+
+                <i class="material-icons delete-note">delete</i>
+            </div>
+            <p class="note-content" contenteditable="true">{{{content}}}</p>
+        </div>
+    </div>
+</script>
+
+<script type="text/template" data-id="tpl-notes">
+    {{#data.notes}}
+    {{> note}}
+    {{/data.notes}}
+    {{^data.notes}}
+        <h2>See that button in the top right? Try clicking it</h2>
+    {{/data.notes}}
+</script>
+
+</body>
+</html>
