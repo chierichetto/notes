@@ -3,6 +3,7 @@ $lightBlue: #048ba8ff;
 $darkBlue: #2e4057ff;
 $green: #99c24dff;
 $grey: #2f2d2eff;
+$lightGrey: #535353;
 
 $note-yellow: #fdf38d;
 $note-green: #afffa7;
@@ -19,6 +20,10 @@ $note-pink: #eab4ff;
     background: #f06d0650;
 }
 
+h2 {
+    font-weight: 300;
+}
+
 body {
     font-family: Jost, 'sans-serif';
     background: $grey;
@@ -26,22 +31,11 @@ body {
     margin: 10px;
 }
 
-#new-note {
+#button-container {
     position: fixed;
     right: 10px;
     top: 10px;
     z-index: 10;
-    background: $lightBlue;
-    width: 50px;
-    height: 50px;
-    border-radius: 50%;
-    display: grid;
-    place-items: center;
-    color: white;
-    cursor: pointer;
-    &:hover {
-        color: $darkBlue;
-    }
 
     @media screen and (max-width: 480px) {
         bottom: 10px;
@@ -51,6 +45,22 @@ body {
 
 }
 
+.button {
+    background: $lightBlue;
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    display: grid;
+    place-items: center;
+    color: white;
+    cursor: pointer;
+    transition: 100ms;
+    margin-bottom: 1rem;
+    &:hover {
+        background: $darkBlue
+    }
+}
+
 #notes {
     display: block;
     column-count: 4;
@@ -58,6 +68,7 @@ body {
     column-fill: auto;
     column-width: 300px;
     height: calc(100vh - 40px);
+    transition: 200ms;
 
     @media screen and (max-width: 480px) {
         column-count: 1;
@@ -68,6 +79,7 @@ body {
 
 .note {
     display: flex;
+    border-radius: 5px;
     background: $note-yellow;
     color: $grey;
     margin-bottom: 20px;
@@ -110,6 +122,60 @@ body {
             }
         }
     }
+
+    &.sortable-drag {
+        cursor: grabbing;
+    }
+
+    &.sortable-chosen {
+        cursor: grabbing;
+    }
+
+    &.sortable-ghost {
+        cursor: grabbing;
+        transform: translateX(10);
+    }
+}
+
+.trash-container {
+    position: absolute;
+    z-index: 100;
+    right: 0;
+    top: 0;
+    height: 100vh;
+    width: 50vw;
+    background: $lightGrey;
+    overflow: auto;
+
+    #trash-header {
+        display: flex;
+        justify-content: space-between;
+        position: sticky;
+        top: 0;
+        background: $lightGrey;
+        padding: 1rem;
+    }
+
+    ul {
+        list-style-type: none;
+        padding: 1rem;
+        li {
+            border-bottom: 1px solid $grey;
+            padding: 1rem 0;
+            display: flex;
+            align-items: center;
+
+            .restore {
+                cursor: pointer;
+            }
+
+            > div:not(.restore) {
+                flex: 1;
+                margin-left: 10px;
+            }
+        }
+    }
+
 }
 
 .--yellow {

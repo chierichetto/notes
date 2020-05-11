@@ -10,14 +10,22 @@
 </head>
 <body>
 
-<div id="new-note">
-    <i class="material-icons">add</i>
+
+<div id="button-container">
+    <div id="new-note" class="button">
+        <i class="material-icons">add</i>
+    </div>
+    <div id="trash" class="button">
+        <i class="material-icons">delete</i>
+    </div>
 </div>
+
 
 <section id="notes"></section>
 
 
 <script type="text/template" data-id="tpl-note">
+    {{^deleted}}
     <div class="note {{color}}" data-id="{{id}}">
         <div class="note-color-select">
             <ul>
@@ -29,13 +37,13 @@
         </div>
         <div style="flex: 1; padding: 10px;">
             <div class="note-header">
-                <h2 class="note-title" contenteditable="true">{{title}}</h2>
-
+                <h2 class="note-title" contenteditable="true">{{title}} </h2>
                 <i class="material-icons delete-note">delete</i>
             </div>
             <p class="note-content" contenteditable="true">{{{content}}}</p>
         </div>
     </div>
+    {{/deleted}}
 </script>
 
 <script type="text/template" data-id="tpl-notes">
@@ -43,8 +51,36 @@
     {{> note}}
     {{/data.notes}}
     {{^data.notes}}
-        <h2>See that button in the top right? Try clicking it</h2>
+    <h2>See that button in the top right? Try clicking it</h2>
     {{/data.notes}}
+</script>
+
+
+<script type="text/template" data-id="tpl-trash">
+
+    <div id="trash-header">
+        <h2>Trash</h2>
+        <div id="close-trash" class="button">
+            <i class="material-icons">close</i>
+        </div>
+    </div>
+
+
+        <ul>
+            {{#notes}}
+            {{#deleted}}
+            <li>
+                <div class="restore" data-id="{{id}}">
+                    <i class="material-icons">restore</i>
+                </div>
+                <div>
+                    <span>{{title}}</span><br>
+                    {{{content}}}
+                </div>
+            </li>
+            {{/deleted}}
+            {{/notes}}
+        </ul>
 </script>
 
 </body>

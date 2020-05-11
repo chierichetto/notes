@@ -11,6 +11,8 @@ export default class Note {
     private template: string;
     private container: HTMLElement;
     private color: string;
+    private sortIndex: number;
+    private deleted: boolean = false;
 
     private static oneLiners: any = [
         'What is the biggest lie in the entire universe? <br>"I have read and agree to the Terms & Conditions."',
@@ -30,14 +32,7 @@ export default class Note {
         minute: 'numeric',
     }
 
-
-    constructor(container: HTMLElement) {
-        this.template = document.querySelector('[data-id="tpl-note"]').innerHTML;
-        this.container = container;
-    }
-
-
-    setId(id: number) {
+    setId(id: number): void {
         this.id = id;
     }
 
@@ -81,15 +76,28 @@ export default class Note {
         return this.color;
     }
 
-    render() {
-        const context = this.getData();
-        const el = document.createElement('div');
-        el.innerHTML = Mustache.render(this.template, context)
-        this.container.appendChild(el);
+    setSortIndex(index: number) {
+        this.sortIndex = index;
     }
 
-    static createNewNote(container: HTMLElement) {
-        const self = new Note(container);
+    getSortIndex(): number {
+        return this.sortIndex;
+    }
+
+    delete(): void {
+        this.deleted = true;
+    }
+
+    restore(): void {
+        this.deleted = false;
+    }
+
+    isDeleted() {
+        return this.deleted === true;
+    }
+
+    static createNewNote() {
+        const self = new Note();
         let dtf = new DateTimeFormat('no-NB', Note.dateOptions);
 
         self.id = Note.generateId();
@@ -98,14 +106,16 @@ export default class Note {
         return self;
     }
 
-    getData() {
-        return {
-            id: this.id,
-            content: this.content,
-            title: this.title,
-            status: this.status,
-            color: this.color,
-        }
+    static createFromData(data: any) {
+        let self = new Note();
+        self.id = data.id;
+        self.title = data.title;
+        self.content = data.content;
+        self.color = data.color;
+        self.sortIndex = data.sortIndex;
+        self.deleted = data.deleted;
+
+        return self;
     }
 
 
