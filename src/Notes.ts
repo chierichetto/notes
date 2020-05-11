@@ -50,9 +50,8 @@ export default class Notes {
         if (data) {
             return JSON.parse(data);
         } else {
-            return [
-                Note.createNewNote(this.container)
-            ]
+            let note = Note.createNewNote(this.container);
+            return note.getData();
         }
     }
 
