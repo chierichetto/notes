@@ -22,6 +22,7 @@ export default class Note {
         'Have you heard of that new band "1023 Megabytes"? They\'re pretty good, but they don\'t have a gig just yet.',
         'We\'ll we\'ll we\'ll...if it isn\'t autocorrect.',
         'My computer suddenly started belting out "Someone Like You." It\'s a Dell. ',
+        'I know a joke about UDP, but i\'m not sure you\'ll get it.',
     ];
 
     private static dateOptions = {
