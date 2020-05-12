@@ -17,8 +17,8 @@ export default class Note {
     private static oneLiners: any = [
         'What is the biggest lie in the entire universe? <br>"I have read and agree to the Terms & Conditions."',
         'How does a computer get drunk? <br>It takes screenshots. ',
-        // 'Why are iPhone chargers not called Apple Juice?!',
-        // 'Why did the PowerPoint Presentation cross the road? <br>To get to the other slide.',
+        'Why are iPhone chargers not called Apple Juice?!',
+        'Why did the PowerPoint Presentation cross the road? <br>To get to the other slide.',
         'Have you heard of that new band "1023 Megabytes"? They\'re pretty good, but they don\'t have a gig just yet.',
         'We\'ll we\'ll we\'ll...if it isn\'t autocorrect.',
         'My computer suddenly started belting out "Someone Like You." It\'s a Dell. ',
